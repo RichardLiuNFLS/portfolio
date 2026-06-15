@@ -6,21 +6,23 @@
     <title>Richard Liu Yuanhao | Computer Science Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
     
     <style>
         /* ==========================================================================
-           1. DESIGN SYSTEM & VARIABLES
+           1. DESIGN SYSTEM & VARIABLES (Academic Elite Theme)
            ========================================================================== */
         :root {
-            --bg-dark: #0f172a;           /* Deep slate blue dark background */
-            --bg-card: #1e293b;           /* Lighter slate for cards */
-            --text-main: #f8fafc;         /* Crisp near-white for high readability */
-            --text-muted: #94a3b8;        /* Soft gray for secondary text */
-            --accent: #10b981;            /* Vibrant emerald green for highlights */
-            --accent-glow: rgba(16, 185, 129, 0.15);
+            --bg-main: #f8fafc;           /* Clean, prestigious light gray/white background */
+            --bg-card: #ffffff;           /* Crisp white for cards and structural blocks */
+            --text-main: #0f172a;         /* Deep slate for high-contrast elite typography */
+            --text-muted: #475569;        /* Mid-tone slate for readable secondary text */
+            --primary-navy: #1e3a8a;      /* Ivy League Royal Navy Blue */
+            --accent-gold: #b45309;       /* Refined academic gold/amber for highlights */
+            --accent-glow: rgba(180, 83, 9, 0.08);
             --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --font-serif: 'Playfair Display', Georgia, serif;
+            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
             --max-width: 1100px;
         }
 
@@ -33,7 +35,7 @@
 
         html {
             scroll-behavior: smooth;
-            background-color: var(--bg-dark);
+            background-color: var(--bg-main);
             color: var(--text-main);
             font-family: var(--font-sans);
         }
@@ -52,14 +54,16 @@
         }
 
         section {
-            padding: 7rem 0;
-            border-bottom: 1px solid #1e293b;
+            padding: 8rem 0;
+            border-bottom: 1px solid #e2e8f0;
         }
 
         .section-title {
-            font-size: 2.25rem;
-            font-weight: 700;
-            margin-bottom: 3rem;
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--primary-navy);
+            margin-bottom: 3.5rem;
             position: relative;
             display: inline-block;
         }
@@ -69,9 +73,9 @@
             position: absolute;
             bottom: -8px;
             left: 0;
-            width: 40px;
+            width: 50px;
             height: 3px;
-            background-color: var(--accent);
+            background-color: var(--accent-gold);
             border-radius: 2px;
         }
 
@@ -84,35 +88,37 @@
             left: 0;
             width: 100%;
             z-index: 1000;
-            background-color: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background-color: rgba(248, 250, 252, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(15, 23, 42, 0.06);
             transition: var(--transition);
         }
 
         header.scrolled {
-            padding: 0.5rem 0;
-            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.3);
+            padding: 0.2rem 0;
+            box-shadow: 0 10px 30px -15px rgba(15, 23, 42, 0.1);
+            background-color: rgba(255, 255, 255, 0.9);
         }
 
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 4.5rem;
+            height: 5rem;
         }
 
         .logo {
-            font-size: 1.25rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            font-weight: 600;
+            letter-spacing: -0.3px;
             text-decoration: none;
-            color: var(--text-main);
+            color: var(--primary-navy);
         }
 
         .logo span {
-            color: var(--accent);
+            color: var(--accent-gold);
         }
 
         .nav-links {
@@ -125,13 +131,31 @@
             text-decoration: none;
             color: var(--text-muted);
             font-size: 0.95rem;
-            font-weight: 500;
+            font-weight: 600;
             transition: var(--transition);
+            position: relative;
+            padding: 0.25rem 0;
         }
 
         .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--accent);
+         .nav-links a.active {
+            color: var(--primary-navy);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-gold);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
         }
 
         /* Mobile Hamburger Menu */
@@ -148,7 +172,7 @@
         .menu-toggle span {
             width: 24px;
             height: 2px;
-            background-color: var(--text-main);
+            background-color: var(--primary-navy);
             transition: var(--transition);
         }
 
@@ -156,11 +180,12 @@
            3. HERO SECTION
            ========================================================================== */
         #hero {
-            min-height: 100vh;
+            min-height: 95vh;
             display: flex;
             align-items: center;
-            padding-top: 4.5rem;
-            background: radial-gradient(circle at 90% 10%, var(--accent-glow) 0%, transparent 40%);
+            padding-top: 5rem;
+            background: radial-gradient(circle at 85% 30%, rgba(30, 58, 138, 0.04) 0%, transparent 50%),
+                        radial-gradient(circle at 15% 70%, rgba(180, 83, 9, 0.03) 0%, transparent 40%);
         }
 
         .hero-content {
@@ -169,50 +194,62 @@
 
         .hero-badge {
             display: inline-block;
-            background-color: var(--accent-glow);
-            color: var(--accent);
-            padding: 0.5rem 1rem;
-            border-radius: 2rem;
+            background-color: rgba(30, 58, 138, 0.06);
+            color: var(--primary-navy);
+            padding: 0.5rem 1.25rem;
+            border-radius: 0.25rem;
             font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            border: 1px solid rgba(16, 185, 129, 0.2);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(30, 58, 138, 0.1);
         }
 
         .hero-content h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 700;
-            line-height: 1.1;
-            letter-spacing: -1px;
-            margin-bottom: 1.5rem;
+            font-family: var(--font-serif);
+            font-size: clamp(2.75rem, 6vw, 4.75rem);
+            font-weight: 600;
+            color: var(--primary-navy);
+            line-height: 1.15;
+            margin-bottom: 2rem;
         }
 
         .hero-content h1 span {
-            color: var(--accent);
+            color: var(--text-main);
+            display: block;
+            font-family: var(--font-sans);
+            font-weight: 700;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-top: 0.5rem;
         }
 
         .hero-content p {
-            font-size: clamp(1.1rem, 2vw, 1.35rem);
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
             color: var(--text-muted);
-            margin-bottom: 2.5rem;
-            max-width: 650px;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            line-height: 1.7;
         }
 
         .btn {
             display: inline-block;
-            background-color: var(--accent);
-            color: var(--bg-dark);
+            background-color: var(--primary-navy);
+            color: #ffffff;
             text-decoration: none;
-            padding: 0.85rem 2rem;
-            border-radius: 0.5rem;
+            padding: 1rem 2.25rem;
+            border-radius: 0.25rem;
             font-weight: 600;
+            letter-spacing: 0.3px;
             transition: var(--transition);
-            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.15);
+            border: 1px solid transparent;
         }
 
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+            background-color: #162a65;
+            box-shadow: 0 6px 20px rgba(30, 58, 138, 0.25);
         }
 
         /* ==========================================================================
@@ -221,60 +258,65 @@
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1.2fr;
-            gap: 4rem;
+            gap: 5rem;
             align-items: center;
         }
 
         .about-img-container {
             position: relative;
-            border-radius: 1rem;
+            border-radius: 0.25rem;
             overflow: hidden;
             aspect-ratio: 4/5;
             background-color: var(--bg-card);
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+            border: 1px solid #e2e8f0;
         }
 
         .about-img-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: grayscale(20%) contrast(110%);
             transition: var(--transition);
         }
 
         .about-img-container:hover img {
-            filter: grayscale(0%) contrast(100%);
-            transform: scale(1.03);
+            transform: scale(1.02);
         }
 
         .about-text p {
             color: var(--text-muted);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.75rem;
             font-size: 1.05rem;
+            line-height: 1.75;
         }
 
         .highlight-box-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 1.5rem;
-            margin-top: 2rem;
+            margin-top: 2.5rem;
         }
 
         .highlight-box {
             background-color: var(--bg-card);
-            padding: 1.25rem;
-            border-radius: 0.75rem;
-            border: 1px solid rgba(255,255,255,0.02);
+            padding: 1.5rem;
+            border-radius: 0.25rem;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
         }
 
         .highlight-box h4 {
-            color: var(--accent);
-            font-size: 1.5rem;
-            font-weight: 700;
+            color: var(--accent-gold);
+            font-family: var(--font-serif);
+            font-size: 1.75rem;
+            font-weight: 600;
             margin-bottom: 0.25rem;
         }
 
         .highlight-box p {
             font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary-navy);
             margin-bottom: 0;
         }
 
@@ -283,51 +325,55 @@
            ========================================================================== */
         .project-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
         }
 
         .project-card {
             background-color: var(--bg-card);
-            border-radius: 1rem;
+            border-radius: 0.25rem;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.03);
+            border: 1px solid #e2e8f0;
             transition: var(--transition);
             display: flex;
             flex-direction: column;
             height: 100%;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
         }
 
         .project-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(16, 185, 129, 0.2);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px);
+            border-color: rgba(30, 58, 138, 0.2);
+            box-shadow: 0 20px 25px -5px rgba(15, 23, 42, 0.08);
         }
 
         .project-img {
-            height: 200px;
+            height: 220px;
             width: 100%;
             object-fit: cover;
-            background-color: #0f172a;
+            border-bottom: 1px solid #e2e8f0;
         }
 
         .project-content {
-            padding: 1.75rem;
+            padding: 2rem;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
         }
 
         .project-title {
-            font-size: 1.35rem;
+            font-family: var(--font-serif);
+            color: var(--primary-navy);
+            font-size: 1.4rem;
             font-weight: 600;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.85rem;
         }
 
         .project-desc {
             color: var(--text-muted);
             font-size: 0.95rem;
-            margin-bottom: 1.5rem;
+            line-height: 1.65;
+            margin-bottom: 2rem;
             flex-grow: 1;
         }
 
@@ -338,19 +384,20 @@
         }
 
         .tag {
-            background-color: rgba(255, 255, 255, 0.05);
+            background-color: #f1f5f9;
             color: var(--text-muted);
             font-size: 0.8rem;
-            font-weight: 500;
-            padding: 0.25rem 0.75rem;
-            border-radius: 2rem;
+            font-weight: 600;
+            padding: 0.35rem 0.85rem;
+            border-radius: 0.25rem;
+            border: 1px solid #e2e8f0;
         }
 
         /* ==========================================================================
            6. ACADEMICS & EXTRACURRICULARS
            ========================================================================== */
         .timeline {
-            max-width: 800px;
+            max-width: 850px;
             margin: 0 auto;
             position: relative;
         }
@@ -362,13 +409,13 @@
             top: 0;
             width: 2px;
             height: 100%;
-            background-color: rgba(255, 255, 255, 0.05);
+            background-color: #e2e8f0;
         }
 
         .timeline-item {
             position: relative;
-            padding-left: 70px;
-            margin-bottom: 3.5rem;
+            padding-left: 80px;
+            margin-bottom: 4rem;
         }
 
         .timeline-item:last-child {
@@ -382,8 +429,8 @@
             width: 24px;
             height: 24px;
             border-radius: 50%;
-            background-color: var(--bg-dark);
-            border: 2px solid var(--accent);
+            background-color: #ffffff;
+            border: 3px solid var(--primary-navy);
             z-index: 2;
             display: flex;
             align-items: center;
@@ -392,90 +439,105 @@
 
         .timeline-dot::after {
             content: '';
-            width: 8px;
-            height: 8px;
+            width: 6px;
+            height: 6px;
             border-radius: 50%;
-            background-color: var(--accent);
+            background-color: var(--accent-gold);
         }
 
         .timeline-meta {
-            font-size: 0.85rem;
-            color: var(--accent);
-            font-weight: 600;
+            font-size: 0.8rem;
+            color: var(--accent-gold);
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 0.35rem;
+            margin-bottom: 0.5rem;
         }
 
         .timeline-title {
-            font-size: 1.4rem;
+            font-family: var(--font-serif);
+            color: var(--primary-navy);
+            font-size: 1.45rem;
             font-weight: 600;
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.35rem;
         }
 
         .timeline-subtitle {
-            font-size: 1rem;
+            font-size: 0.95rem;
+            font-weight: 600;
             color: var(--text-main);
-            opacity: 0.9;
-            margin-bottom: 0.75rem;
+            margin-bottom: 1rem;
         }
 
         .timeline-desc {
             color: var(--text-muted);
             font-size: 0.95rem;
+            line-height: 1.7;
         }
 
         /* ==========================================================================
            7. CONTACT & FOOTER
            ========================================================================== */
         footer {
-            background-color: #0b0f19;
-            padding: 5rem 0 3rem 0;
-            border-top: 1px solid rgba(255,255,255,0.02);
+            background-color: #0f172a; /* Sophisticated deep slate for high contrast finish */
+            color: #ffffff;
+            padding: 6rem 0 3rem 0;
             text-align: center;
         }
 
         .footer-content {
-            max-width: 600px;
+            max-width: 650px;
             margin: 0 auto;
         }
 
         .footer-content h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
+            font-family: var(--font-serif);
+            font-size: 2.25rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
         }
 
         .footer-content p {
-            color: var(--text-muted);
-            margin-bottom: 2rem;
+            color: #94a3b8;
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+        }
+
+        .footer-content .btn {
+            background-color: var(--accent-gold);
+            box-shadow: 0 4px 12px rgba(180, 83, 9, 0.2);
+        }
+
+        .footer-content .btn:hover {
+            background-color: #9a4607;
+            box-shadow: 0 6px 20px rgba(180, 83, 9, 0.35);
         }
 
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 2rem;
-            margin-bottom: 3rem;
+            gap: 2.5rem;
+            margin-bottom: 3.5rem;
             list-style: none;
         }
 
         .social-links a {
-            color: var(--text-muted);
+            color: #94a3b8;
             text-decoration: none;
             font-size: 0.95rem;
-            font-weight: 500;
+            font-weight: 600;
             transition: var(--transition);
         }
 
         .social-links a:hover {
-            color: var(--accent);
+            color: #ffffff;
         }
 
         .copyright {
             color: #475569;
             font-size: 0.85rem;
-            border-top: 1px solid rgba(255,255,255,0.03);
-            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding-top: 2.5rem;
         }
 
         /* ==========================================================================
@@ -484,10 +546,10 @@
         @media (max-width: 968px) {
             .about-grid {
                 grid-template-columns: 1fr;
-                gap: 3rem;
+                gap: 4rem;
             }
             .about-img-container {
-                max-width: 400px;
+                max-width: 420px;
                 margin: 0 auto;
                 width: 100%;
             }
@@ -507,15 +569,15 @@
                 position: fixed;
                 top: 0;
                 right: -100%;
-                width: 70%;
+                width: 75%;
                 height: 100vh;
-                background-color: var(--bg-card);
+                background-color: #ffffff;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                gap: 2rem;
+                gap: 2.5rem;
                 transition: var(--transition);
-                box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+                box-shadow: -10px 0 40px rgba(15, 23, 42, 0.15);
             }
 
             .nav-links.active {
@@ -536,7 +598,7 @@
                 left: 11px;
             }
             .timeline-item {
-                padding-left: 40px;
+                padding-left: 45px;
             }
             .timeline-dot {
                 left: 0;
@@ -570,10 +632,12 @@
         <section id="hero">
             <div class="container">
                 <div class="hero-content">
-                    <div class="hero-badge">Grade 10 Student & Aspiring Software Engineer</div>
-                    <h1>Hello, I'm <span>Richard Liu Yuanhao</span>.</h1>
-                    <p>Grade 10 Student at Nanjing Foreign Language School British Columbia Academy. Driven by logic, algorithms, and computing, my future sights are firmly set on majoring in <strong>Computer Science</strong>.</p>
-                    <a href="#contact" class="btn">Explore My Work</a>
+                    <div class="hero-badge">Grade 10 • Computer Science & Engineering Track</div>
+                    <h1>Nanjing Foreign Language School BCA
+                        <span>Richard Liu Yuanhao</span>
+                    </h1>
+                    <p>Driven by logic, algorithms, and computing. Currently focusing on foundational structural software logic, hardware assembly prototyping, and maintaining top academic excellence.</p>
+                    <a href="#projects" class="btn">View Academic Portfolio</a>
                 </div>
             </div>
         </section>
@@ -583,7 +647,7 @@
                 <h2 class="section-title">About Me</h2>
                 <div class="about-grid">
                     <div class="about-img-container">
-                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=600&q=80" alt="Richard Liu Yuanhao Portfolio Visual">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80" alt="Richard Liu Yuanhao Portfolio Academic Visual">
                     </div>
                     <div class="about-text">
                         <p>I am an ambitious Grade 10 student currently studying at the <strong>Nanjing Foreign Language School British Columbia Academy</strong>. My academic journey is built on structural precision, a relentless curiosity for systems architecture, and a passion for technology.</p>
@@ -592,7 +656,7 @@
                         <div class="highlight-box-grid">
                             <div class="highlight-box">
                                 <h4>95+</h4>
-                                <p>Grade 10 GPA Academic Record</p>
+                                <p>Academic GPA Record</p>
                             </div>
                             <div class="highlight-box">
                                 <h4>CS Major</h4>
@@ -606,11 +670,11 @@
 
         <section id="projects">
             <div class="container">
-                <h2 class="section-title">Projects & Club Projects</h2>
+                <h2 class="section-title">Projects & Key Work</h2>
                 <div class="project-grid">
                     
                     <article class="project-card">
-                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=600&q=80" alt="Computer logic illustration code" class="project-img">
+                        <img src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&w=600&q=80" alt="Algorithmic flow and computing structures data representation" class="project-img">
                         <div class="project-content">
                             <h3 class="project-title">Algorithmic Problem Solving</h3>
                             <p class="project-desc">Independent work developing structural algorithms, exploring basic runtime analysis, and writing object-oriented scripts during my self-guided learning labs.</p>
@@ -623,7 +687,7 @@
                     </article>
 
                     <article class="project-card">
-                        <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=600&q=80" alt="Robotics engineering microcontrollers" class="project-img">
+                        <img src="https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=600&q=80" alt="Microchips, physical printed circuit boards and electronic logic arrays" class="project-img">
                         <div class="project-content">
                             <h3 class="project-title">Hardware Logic Array</h3>
                             <p class="project-desc">A collaborative prototype built alongside fellow school peers, focused on programming responsive automation instructions into microcontrollers.</p>
@@ -636,7 +700,7 @@
                     </article>
 
                     <article class="project-card">
-                        <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80" alt="Responsive user interface code architecture" class="project-img">
+                        <img src="https://images.unsplash.com/photo-1547658719-da2b81166b58?auto=format&fit=crop&w=600&q=80" alt="Clean code structure displayed modern viewport design layout" class="project-img">
                         <div class="project-content">
                             <h3 class="project-title">Personal Portfolio Platform</h3>
                             <p class="project-desc">Engineered an end-to-end web space from scratch utilizing clean, modern semantic vanilla layout architecture to highlight academic growth and applications.</p>
@@ -689,19 +753,19 @@
     <footer id="contact">
         <div class="container">
             <div class="footer-content">
-                <h2>Let's Collaborate</h2>
-                <p>I am always looking forward to discussing software engineering projects, algorithmic challenges, or academic initiatives. Feel free to contact me directly!</p>
+                <h2>Academic & Project Inquiries</h2>
+                <p>I am always eager to talk about computer science theory, collaborative hardware prototyping, or prospective research opportunities. Let's start a conversation.</p>
                 
-                <a href="mailto:your.email@example.com" class="btn" style="margin-bottom: 3rem;">Send Me an Email</a>
+                <a href="mailto:your.email@example.com" class="btn" style="margin-bottom: 3.5rem;">Initiate Contact via Email</a>
                 
                 <ul class="social-links">
                     <li><a href="#" target="_blank" rel="noopener noreferrer">GitHub</a></li>
                     <li><a href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-                    <li><a href="#" target="_blank" rel="noopener noreferrer">Resume / CV</a></li>
+                    <li><a href="#" target="_blank" rel="noopener noreferrer">Transcript / CV</a></li>
                 </ul>
                 
                 <div class="copyright">
-                    &copy; 2026 Richard Liu Yuanhao. All Rights Reserved. Crafted with clean semantic HTML5 & Vanilla CSS.
+                    &copy; 2026 Richard Liu Yuanhao. All Rights Reserved. Formatted for Elite University Matriculation Portfolios.
                 </div>
             </div>
         </div>
@@ -743,8 +807,8 @@
 
             const observerOptions = {
                 root: null,
-                threshold: 0.3,
-                rootMargin: "-10% 0px -40% 0px"
+                threshold: 0.2,
+                rootMargin: "-20% 0px -30% 0px"
             };
 
             const observer = new IntersectionObserver((entries) => {
