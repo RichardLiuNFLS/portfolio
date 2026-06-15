@@ -1,1 +1,841 @@
 <h1>Richard Liu Yuanhao</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Grade 10 CS Student</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==========================================================================
+           1. DESIGN SYSTEM & VARIABLES
+           ========================================================================== */
+        :root {
+            /* Sophisticated dark mode palette with emerald green accents */
+            --bg-primary: #0b0f19;
+            --bg-secondary: #131a26;
+            --bg-tertiary: #1c2635;
+            --accent: #10b981; /* Emerald Green */
+            --accent-glow: rgba(16, 185, 129, 0.15);
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border-color: rgba(255, 255, 255, 0.08);
+            
+            --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --max-width: 1100px;
+        }
+
+        /* Base Reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Utilities */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 8rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 40px;
+            height: 3px;
+            background-color: var(--accent);
+            border-radius: 2px;
+        }
+
+        .accent-text {
+            color: var(--accent);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem 1.6rem;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: var(--transition);
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: #000;
+            box-shadow: 0 4px 14px var(--accent-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--border-color);
+            background: transparent;
+            color: var(--text-main);
+        }
+
+        .btn-outline:hover {
+            background: var(--bg-secondary);
+            border-color: var(--text-muted);
+            transform: translateY(-2px);
+        }
+
+        /* ==========================================================================
+           2. NAVIGATION BAR
+           ========================================================================== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(11, 15, 25, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 0.5rem 0;
+            background-color: rgba(11, 15, 25, 0.95);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 4.5rem;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .nav-links a:hover, 
+        .nav-links a.active {
+            color: var(--text-main);
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .menu-toggle span {
+            width: 24px;
+            height: 2px;
+            background-color: var(--text-main);
+            transition: var(--transition);
+        }
+
+        /* ==========================================================================
+           3. HERO SECTION
+           ========================================================================== */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 4.5rem;
+            position: relative;
+        }
+
+        /* Subtle background glow for tech theme */
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            right: 10%;
+            width: 300px;
+            height: 300px;
+            background: var(--accent-glow);
+            filter: blur(100px);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 700px;
+        }
+
+        .hero-tag {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            font-weight: 400;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        /* ==========================================================================
+           4. ABOUT ME
+           ========================================================================== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image-wrapper {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: var(--bg-secondary);
+            aspect-ratio: 4/5;
+        }
+
+        .about-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(20%) contrast(105%);
+            transition: var(--transition);
+        }
+
+        .about-image-wrapper:hover .about-img {
+            filter: grayscale(0%) contrast(100%);
+            transform: scale(1.02);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-muted);
+        }
+
+        /* Quick stats layout */
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            background-color: var(--bg-secondary);
+            padding: 1.25rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-number {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* ==========================================================================
+           5. PROJECTS / ACHIEVEMENTS
+           ========================================================================== */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--bg-secondary);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(16, 185, 129, 0.3);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-img-container {
+            height: 200px;
+            overflow: hidden;
+            background-color: var(--bg-tertiary);
+            position: relative;
+        }
+
+        .project-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-img-container img {
+            transform: scale(1.05);
+        }
+
+        .project-content {
+            padding: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .project-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-desc {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            font-weight: 600;
+            background-color: var(--bg-tertiary);
+            color: var(--text-muted);
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+        }
+
+        /* ==========================================================================
+           6. ACADEMICS & EXTRACURRICULARS (Timeline)
+           ========================================================================== */
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Left vertical timeline bar line */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background-color: var(--border-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 2.5rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Timeline tracking node circle */
+        .timeline-dot {
+            position: absolute;
+            left: -5px;
+            top: 6px;
+            width: 12px;
+            height: 12px;
+            background-color: var(--bg-primary);
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .timeline-date {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .timeline-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            opacity: 0.8;
+            margin-bottom: 0.75rem;
+        }
+
+        .timeline-desc {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+        }
+
+        /* ==========================================================================
+           7. CONTACT & FOOTER
+           ========================================================================== */
+        .contact-wrapper {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-text {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        footer {
+            padding: 4rem 0;
+            background-color: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-copy {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        /* ==========================================================================
+           8. RESPONSIVE MEDIA QUERIES
+           ========================================================================== */
+        @media (max-width: 968px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .about-image-wrapper {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            .hero-title {
+                font-size: 2.75rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: 6rem 0;
+            }
+            
+            .menu-toggle {
+                display: flex;
+                z-index: 1001;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                max-width: 300px;
+                height: 100vh;
+                background-color: var(--bg-secondary);
+                flex-direction: column;
+                padding: 7rem 3rem;
+                transition: var(--transition);
+                border-left: 1px solid var(--border-color);
+                box-shadow: -10px 0 30px rgba(0,0,0,0.3);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            /* Hamburger Menu Animation toggles */
+            .menu-toggle.active span:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+            .menu-toggle.active span:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            .hero-title {
+                font-size: 2.25rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#hero" class="logo">PORTFOLIO<span class="accent-text">.</span></a>
+                <button class="menu-toggle" aria-label="Toggle Navigation Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="#hero" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#academics" class="nav-link">Academics</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="section">
+            <div class="container">
+                <div class="hero-content">
+                    <span class="hero-tag">Welcome to my space</span>
+                    <h1 class="hero-title">Hello, I'm <span class="accent-text">Your Name</span>.</h1>
+                    <p class="hero-subtitle">
+                        A Grade 10 student at <strong>Nanjing Foreign Language School British Columbia Academy</strong>, aspiring Computer Science major, and tech enthusiast.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                        <a href="#projects" class="btn btn-outline">View My Work</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-grid">
+                    <div class="about-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=600&q=80" alt="Workspace / Portrait Placeholder" class="about-img">
+                    </div>
+                    <div class="about-text">
+                        <p>
+                            I am an academic-driven Grade 10 student currently studying within the BC Curriculum framework at NFLS BCA. Passionate about problem-solving and software engineering, I dedicate my free time to diving deeper into computational thinking and algorithmic paradigms.
+                        </p>
+                        <p>
+                            Through my active engagement in our school's specialized clubs, I constantly seek out opportunities to bridge theoretical engineering practices with practical, clean code execution.
+                        </p>
+                        
+                        <div class="about-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">95+</span>
+                                <span class="stat-label">Current Grade 10 GPA</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">2+</span>
+                                <span class="stat-label">Core STEM Clubs</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section">
+            <div class="container">
+                <h2 class="section-title">Projects & Milestones</h2>
+                <div class="project-grid">
+                    
+                    <article class="project-card">
+                        <div class="project-img-container">
+                            <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=500&q=80" alt="Coding Project">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Algorithmic Base Foundations</h3>
+                            <p class="project-desc">A exploratory suite of algorithms built to grasp fundamental standard data collections, data structures, and optimization tasks.</p>
+                            <div class="project-tags">
+                                <span class="tag">#Python</span>
+                                <span class="tag">#CS-Club</span>
+                                <span class="tag">#Algorithms</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-img-container">
+                            <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=500&q=80" alt="Engineering Challenge">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Structural Micro-Grid Simulation</h3>
+                            <p class="project-desc">Collaborated within the engineering framework club to design logic pathways and map efficient grid models simulation components.</p>
+                            <div class="project-tags">
+                                <span class="tag">#Engineering</span>
+                                <span class="tag">#CAD-Modeling</span>
+                                <span class="tag">#Teamwork</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-img-container">
+                            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=500&q=80" alt="Academic Presentation">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">BCA Tech Presentation</h3>
+                            <p class="project-desc">Prepared and systematically presented a deep dive regarding the downstream security impacts of automated systems processing data architectures.</p>
+                            <div class="project-tags">
+                                <span class="tag">#Research</span>
+                                <span class="tag">#PublicSpeaking</span>
+                                <span class="tag">#Security</span>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="academics" class="section">
+            <div class="container">
+                <h2 class="section-title">Academic & Leadership Timeline</h2>
+                <div class="timeline">
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <span class="timeline-date">Present Academic standing</span>
+                        <h3 class="timeline-title">High-Distinction Academic Profile</h3>
+                        <h4 class="timeline-subtitle">Nanjing Foreign Language School BCA</h4>
+                        <p class="timeline-desc">Maintaining a top-tier GPA of 95+ through rigorous standard coursework assessments, excelling intensely in mathematical analysis and foundational sciences.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <span class="timeline-date">Extracurricular Engagement</span>
+                        <h3 class="timeline-title">Core Active Member</h3>
+                        <h4 class="timeline-subtitle">Computer Science Club</h4>
+                        <p class="timeline-desc">Engaged regularly in weekly code reviews, peer problem-solving hacking hackathons, and functional design reviews mapping real-world programmatic requirements.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <span class="timeline-date">Co-Curricular Engineering Lab</span>
+                        <h3 class="timeline-title">Project Contributor</h3>
+                        <h4 class="timeline-subtitle">Engineering Club</h4>
+                        <p class="timeline-desc">Participated dynamically in iterative structural building labs, applying rigorous mechanics principles to hardware setups and systematic group presentations.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="container">
+                <div class="contact-wrapper">
+                    <h2 class="section-title">Let's Connect</h2>
+                    <p class="contact-text">
+                        I am actively exploring future academic growth paths, mentorship options, and technical partnerships. Feel free to reach out via email!
+                    </p>
+                    <a href="mailto:your.email@example.com" class="btn btn-primary">your.email@example.com</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-copy">&copy; 2026 Your Name. Built for University Admissions Portfolio.</p>
+                <div class="footer-links">
+                    <a href="#" target="_blank" rel="noopener">GitHub</a>
+                    <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+                    <a href="#" target="_blank" rel="noopener">Resume</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Mobile Menu Open/Close Toggle
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinksContainer = document.querySelector('.nav-links');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            menuToggle.addEventListener('click', () => {
+                menuToggle.classList.toggle('active');
+                navLinksContainer.classList.toggle('active');
+            });
+
+            // Close mobile menu immediately whenever any link selection is performed
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    menuToggle.classList.remove('active');
+                    navLinksContainer.classList.remove('active');
+                });
+            });
+
+            // 2. Dynamic Scrollspy Activation & Dynamic Header compression
+            const header = document.getElementById('header');
+            const sections = document.querySelectorAll('section');
+
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY;
+
+                // Compress header top nav container when user scrolls down
+                if (scrollPosition > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+
+                // Detect exact active visual section position within viewport
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 100; // Offset for structural sticky header spacing
+                    const sectionHeight = section.offsetHeight;
+                    const sectionId = section.getAttribute('id');
+
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${sectionId}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+```
